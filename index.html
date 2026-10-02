@@ -284,6 +284,22 @@ button,select,input,label,.opt,.pc,.tab{touch-action:manipulation}
 .bagseg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:2px solid var(--pine);border-radius:3px;overflow:hidden}
 .bagseg button{background:#fff;border:0;border-left:1px solid var(--line);min-height:40px;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);cursor:pointer}
 .bagseg button:first-child{border-left:0}.bagseg button.on{background:var(--pine);color:#fff}
+.ssum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:10px}
+.ssum div{background:var(--board);padding:8px 10px}.ssum b{display:block;font:800 22px/1 'Barlow Condensed',sans-serif}.ssum span{font-size:11.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.schips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.schips button{flex:0 0 auto;border:2px solid var(--pine);background:#fff;color:var(--pine);border-radius:20px;padding:7px 14px;min-height:38px;font:700 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.schips button.on{background:var(--pine);color:#fff}
+.wmo{font:700 12px 'Libre Franklin',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:12px 0 4px;border-bottom:2px solid var(--ink)}
+.wk{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line)}
+.wk.cur{background:var(--hl);box-shadow:inset 4px 0 0 var(--flag)}.wk.past .wt{color:var(--muted)}
+.wn{font:800 18px 'Barlow Condensed',sans-serif;color:var(--muted);text-align:center}
+.wt{font:700 17px/1.15 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em}.wt .badge{font-size:10px;padding:3px 5px;vertical-align:2px}
+.wplan{display:flex;border:2px solid var(--pine);border-radius:3px;overflow:hidden}
+.wplan button{background:#fff;border:0;border-left:1px solid var(--line);min-height:36px;min-width:46px;padding:0 8px;font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+.wplan button:first-child{border-left:0}.wplan button.on{background:var(--pine);color:#fff}
+.wres{font:800 18px 'Barlow Condensed',sans-serif;min-width:52px;text-align:center;padding:4px 6px;border-radius:2px;background:var(--board-2)}
+.wres.win{background:var(--flag);color:var(--pine-d)}.wres.t10{background:#dfeee5;color:var(--pine-l)}.wres.mc{color:var(--red)}.wres.rest{font-size:13px;color:var(--muted);background:none}
+@media (max-width:640px){.wk{grid-template-columns:20px minmax(0,1fr) auto;gap:6px;padding:8px 2px}.wn{font-size:15px}.wplan button{min-width:36px;padding:0 5px;font-size:12px;min-height:38px}.wt{font-size:14.5px}.wk .small{font-size:11.5px}.sbulk{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))}.sbulk .btn{font-size:11.5px;padding:8px 3px;letter-spacing:.03em;min-height:40px}.schips button{padding:6px 11px;font-size:13px}}
 /* ---------- phone layout ---------- */
 .bnav,.msheet,.guide-mini{display:none}
 @media (max-width:640px){
@@ -1253,7 +1269,7 @@ function startSeason(y){
   if(y>S.y0)news('The '+y+' season begins. You are on the '+tourName(S.tour)+'.','me');
   mentorSeason();mentorOffer();S.goals=genGoals();S.goalsY=y;
 }
-function tourName(t,y){y=y||S.year;const home=S&&S.home||'main';if(t==='main')return 'PGA Tour';if(t==='euro')return y<2022?'European Tour':'DP World Tour';if(t==='dev')return home==='euro'?'Challenge Tour':'Korn Ferry Tour';if(t==='liv')return 'LIV Golf League';if(t==='senior')return y<2003?'Senior PGA Tour':y<2016?'Champions Tour':'PGA Tour Champions';if(t==='am')return 'Amateur golf';return 'Q-School';}
+function tourName(t,y){y=y||S.year;const home=S&&S.home||'main';if(t==='main')return 'PGA Tour';if(t==='euro')return y<2022?'European Tour':'DP World Tour';if(t==='dev')return home==='euro'?(y>=1989?'Challenge Tour':'Satellite Tour'):(y<1990?'Satellite Tour':y<1993?'Ben Hogan Tour':y<2000?'Nike Tour':y<2003?'Buy.com Tour':y<2012?'Nationwide Tour':y<2019?'Web.com Tour':'Korn Ferry Tour');if(t==='liv')return 'LIV Golf League';if(t==='senior')return y<2003?'Senior PGA Tour':y<2016?'Champions Tour':'PGA Tour Champions';if(t==='am')return 'Amateur golf';return 'Q-School';}
 
 const curDrill=()=>DRILLS.find(x=>x.id===S.tr.drill)||DRILLS[DRILLS.length-1];
 const primary=d=>Object.entries(d.a).sort((a,b)=>b[1]-a[1])[0][0];
@@ -2364,6 +2380,12 @@ const ACT={
   wkgo(){startWeekly();render();window.scrollTo(0,0);},
   wkpost(){wkPost().then(()=>render(),()=>{V.wkErr='Could not post. You may need Contributor access to this page.';render();});},
   more(){V.more=!V.more;render();},
+  splan(v){const[i,k]=v.split(':');if(k==='auto')delete S.plan[+i];else S.plan[+i]=k;save();render();},
+  sfilt(v){V.sf=v;render();},
+  sbulk(v){const N=S.sched.length;if(v==='clear')S.plan={};
+    else if(v==='restpre'){for(let i=S.week+1;i<N;i++)if(S.sched[i].main.type==='major'&&S.plan[i-1]!=='main')S.plan[i-1]='rest';}
+    else if(v==='playall'){for(let i=S.week;i<N;i++){const w=S.sched[i];if(S.plan[i]==='rest')continue;if(w.main.type!=='team'&&elig(w.main).ok)S.plan[i]='main';else if(w.alt&&S.tour==='main'&&elig(w.alt).ok)S.plan[i]='alt';else{const se=S.tour==='euro'?w.euro:S.tour==='am'?w.am:S.tour==='liv'?w.liv:S.tour==='senior'?w.sen:S.tour==='dev'?w.dev:null;if(se)S.plan[i]='side';}}}
+    save();render();},
   tab(v){if(MG&&MG.done)MG=null;V.tab=v;V.more=false;if(S&&S.guide&&S.guide.d){S.guide.d[v]=1;save();}V.confirmRetire=false;render();window.scrollTo(0,0);},
   rk(v){V.rk=v;render();},
   play(v){const w=S.sched[S.week];const ev=v==='side'?sideEv():v==='alt'?w.alt:w.main;startEvent(ev,false);render();window.scrollTo(0,0);},
@@ -2931,21 +2953,37 @@ function vRank(){
   ${rows.length?rows.map(r=>r.length===1?`<tr><td colspan="6" class="muted">…</td></tr>`:(()=>{const g=G(r[1]);const a=r[1]==='me'?age():g?S.year-g.birth:'';const rv=(S.rivals||[]).some(x=>x.id===r[1]);return `<tr class="${r[1]==='me'?'me':''}"><td>${r[0]}</td><td>${esc(fn(r[1]))}${rv?' <span class="badge red">Rival</span>':''}</td><td>${g?g.ctry:''}</td><td>${a}</td><td class="small muted">${r[1]==='me'?esc(ARCH[S.p.arch].n):esc(styleTxt(r[1]))}</td><td class="n">${r[2]}</td></tr>`;})()).join(''):'<tr><td colspan="6" class="muted">No results yet this season.</td></tr>'}
   </tbody></table></div></div></div>`;
 }
+const BIGT=['major','players','sig','playoff','final','team','olympics','wgc'];
 function vSched(){
   const se=w=>S.tour==='euro'?w.euro:S.tour==='am'?w.am:S.tour==='liv'?w.liv:S.tour==='senior'?w.sen:S.tour==='dev'?w.dev:null;
   const TY={major:'Major',players:'Flagship',sig:'Signature',playoff:'Playoffs',final:'Finale',wgc:'WGC',team:'Team',olympics:'Olympics',alt:'Opposite'};
-  const rows=S.sched.map((w,i)=>{const past=i<S.week,cur=i===S.week;const side=se(w);
-    let status,sel='';
-    if(past){const res=S.res.filter(r=>r.y===S.year&&(r.n===w.main.n||(w.alt&&r.n===w.alt.n)||(side&&r.n===side.n))).pop();status=res?`<strong>${res.posT}</strong> <span class="small">${esc(res.n)}</span>`:'<span class="muted small">Did not play</span>';}
-    else{const em=elig(w.main);const parts=[];
-      if(w.main.type==='team')parts.push(em.ok?'Selected':'Not selected');else if(em.ok)parts.push('Eligible');else if(em.qual)parts.push('Qualifying open');else if(em.invite)parts.push('Invite available');
-      if(w.alt&&S.tour==='main')parts.push('Opposite event');if(side)parts.push(tourName(S.tour)+' event');
-      status=parts.length?`<span class="small">${parts.join(' · ')}</span>`:'<span class="small muted">Not eligible</span>';
-      const p=S.plan[i]||'auto';const opts=[['auto','Auto'],...(w.main.type!=='team'&&(em.ok||em.invite)?[['main','Play '+(TY[w.main.type]||'PGA Tour')+' event']]:[]),...(w.alt&&S.tour==='main'?[['alt','Play opposite event']]:[]),...(side?[['side','Play '+tourName(S.tour)+' event']]:[]),['rest','Rest & train']];
-      sel=`<select data-plan="${i}" id="plan-${i}" aria-label="Plan for week ${i+1}" style="padding:6px 8px;font-size:13px;min-width:150px">${opts.map(([k,n])=>`<option value="${k}" ${p===k?'selected':''}>${n}</option>`).join('')}</select>`;}
-    return `<tr class="${cur?'me':''}"><td>${i+1}</td><td>${w.mo}</td><td style="white-space:normal;min-width:200px">${TY[w.main.type]?`<span class="badge ${w.main.type==='major'||w.main.type==='olympics'?'red':'gr'}">${TY[w.main.type]}</span> `:''}${esc(w.main.n)}${w.alt?`<div class="small muted">Same week: ${esc(w.alt.n)}</div>`:''}${side?`<div class="small muted">${tourName(S.tour)}: ${esc(side.n)}</div>`:''}</td><td style="white-space:normal">${status}</td><td>${sel}</td></tr>`;}).join('');
-  return `<div class="board"><div class="bh"><span>${S.year} schedule</span><span>${S.sched.length} weeks</span></div><div class="bb"><p class="small muted">Plan your year. Auto plays whatever you can enter when your energy is 40 or higher and rests otherwise. Auto-play and Sim to end of season follow this plan. Eligibility for later weeks is a projection from today.</p>
-  <div class="scroll"><table class="tbl"><thead><tr><th>Wk</th><th>Mo</th><th>Event</th><th>Status</th><th>Plan</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>`;
+  const f=V.sf||'up';const N=S.sched.length;
+  const nextMaj=S.sched.findIndex((w,i)=>i>=S.week&&w.main.type==='major');
+  let pl=0,rs=0;for(let i=S.week;i<N;i++){const p=S.plan[i];if(p==='rest')rs++;else if(p&&p!=='auto')pl++;}
+  const items=S.sched.map((w,i)=>({w,i})).filter(({w,i})=>f==='all'?true:f==='past'?i<S.week:f==='big'?i>=S.week&&(BIGT.includes(w.main.type)||(se(w)&&['final','flag','wgc'].includes(se(w).type))):i>=S.week);
+  let lastMo='';
+  const rows=items.map(({w,i})=>{const past=i<S.week,cur=i===S.week;const side=se(w);let head='';
+    if(w.mo!==lastMo){lastMo=w.mo;head=`<div class="wmo">${w.mo} ${S.year}</div>`;}
+    const big=BIGT.includes(w.main.type);
+    const badge=TY[w.main.type]?`<span class="badge ${w.main.type==='major'||w.main.type==='olympics'?'red':big?'':'gr'}">${TY[w.main.type]}</span>`:'';
+    let right='',status='';
+    if(past){const res=S.res.filter(r=>r.y===S.year&&(r.n===w.main.n||(w.alt&&r.n===w.alt.n)||(side&&r.n===side.n))).pop();
+      right=res?`<span class="wres ${res.win?'win':res.pos&&res.pos<=10?'t10':!res.pos?'mc':''}">${res.win?'WON':esc(res.posT)}</span>`:'<span class="wres rest">Rest</span>';
+      if(res&&res.n!==w.main.n)status=`<div class="small muted">Played: ${esc(res.n)}</div>`;}
+    else{const em=elig(w.main);const p=S.plan[i]||'auto';
+      const opts=[['auto','Auto'],...(w.main.type!=='team'&&(em.ok||em.invite)?[['main',em.ok?'Play':'Invite']]:[]),...(w.alt&&S.tour==='main'?[['alt','Opp.']]:[]),...(side?[['side','Play']]:[]),['rest','Rest']];
+      right=`<div class="wplan">${opts.map(([k,n])=>`<button class="${p===k?'on':''}" data-a="splan" data-v="${i}:${k}" aria-pressed="${p===k}">${n}</button>`).join('')}</div>`;
+      const st=w.main.type==='team'?(em.ok?'You are on the team':'Team event'):em.ok?'Eligible':em.qual?'Qualifying open':em.invite?'Sponsor invite available':S.tour!=='main'?'':'Not eligible';
+      status=`<div class="small muted">${st}${cur?' · <strong style="color:var(--pine-l)">This week</strong>':''}</div>`;}
+    const name=side&&S.tour!=='main'?side.n:w.main.n;const sub=side&&S.tour!=='main'?'PGA Tour: '+w.main.n:w.alt?'Same week: '+w.alt.n:'';
+    return head+`<div class="wk ${cur?'cur':''} ${past?'past':''}" ${cur?'id="wk-cur"':''}><div class="wn">${i+1}</div><div class="wm"><div class="wt">${badge} ${esc(name)}</div>${sub?`<div class="small muted">${esc(sub)}</div>`:''}${status}</div>${right}</div>`;}).join('');
+  const chip=(k,n)=>`<button class="${f===k?'on':''}" data-a="sfilt" data-v="${k}">${n}</button>`;
+  return `<div class="board"><div class="bh"><span>${S.year} schedule</span><span>Week ${Math.min(S.week+1,N)} of ${N}</span></div><div class="bb">
+    <div class="ssum"><div><b>${nextMaj>=0?nextMaj-S.week===0?'This week':'In '+(nextMaj-S.week)+' wk':'—'}</b><span>${nextMaj>=0?esc(S.sched[nextMaj].main.n):'No majors left'}</span></div><div><b>${pl}</b><span>Set to play</span></div><div><b>${rs}</b><span>Rest weeks</span></div></div>
+    <div class="schips">${chip('up','Upcoming')}${chip('big','Big events')}${chip('past','Results')}${chip('all','Full year')}</div>
+    <div class="row sbulk" style="margin:8px 0 4px"><button class="btn gh sm" data-a="sbulk" data-v="restpre">Rest before majors</button><button class="btn gh sm" data-a="sbulk" data-v="playall">Play every week</button><button class="btn gh sm" data-a="sbulk" data-v="clear">Reset to auto</button></div>
+    <p class="small muted hide-m" style="margin:0 0 6px">Auto plays when energy is 40 or more and always plays the big events. Auto-play and Sim Season follow your picks.</p>
+    <div class="wlist">${rows||'<p class="small muted">Nothing here.</p>'}</div></div></div>`;
 }
 function vSpon(){
   const tot=SLOTS.reduce((a,s)=>a+(S.spon[s]?S.spon[s].pay:0),0);
