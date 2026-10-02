@@ -251,6 +251,72 @@ button,select,input,label,.opt,.pc,.tab{touch-action:manipulation}
 .tabs{position:sticky;top:env(safe-area-inset-top);z-index:20;background:var(--pine);box-shadow:0 8px 12px -10px rgba(0,0,0,.6)}
 @media (pointer:coarse){.btn{min-height:44px}.btn.sm{min-height:40px}.tab{min-height:46px}.toggle{min-height:40px}.toggle input{width:22px;height:22px}select,input[type=text],input[type=number]{min-height:44px}.opt{min-height:48px}}
 @media (max-width:640px){.wrap{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}}
+
+/* ---------- phone layout ---------- */
+.bnav,.msheet,.guide-mini{display:none}
+@media (max-width:640px){
+ body{font-size:14px}
+ .wrap{padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+ .tabs{display:none}
+ .bnav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--pine-d);border-top:1px solid rgba(255,255,255,.14);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -8px 20px rgba(0,0,0,.35)}
+ .bnav button{background:none;border:0;color:var(--txt-2);display:grid;justify-items:center;align-content:center;gap:3px;padding:6px 0 5px;font:700 11px/1 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;min-height:54px;position:relative;cursor:pointer}
+ .bnav button.on{color:var(--flag)}
+ .bnav svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ .bnav .dot{position:absolute;top:7px;left:calc(50% + 8px);margin:0}
+ .msheet{display:block;position:fixed;left:0;right:0;bottom:calc(54px + env(safe-area-inset-bottom));z-index:49;background:var(--pine-d);border-top:1px solid rgba(255,255,255,.14);padding:12px 12px 10px;box-shadow:0 -14px 30px rgba(0,0,0,.45)}
+ .msheet .mg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .msheet button{background:var(--pine-l);color:#fff;border:0;border-radius:4px;min-height:52px;font:700 15px/1.1 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;position:relative;cursor:pointer}
+ .msheet button.on{background:var(--flag);color:var(--pine-d)}
+ .mscrim{position:fixed;inset:0;z-index:48;background:rgba(0,0,0,.35)}
+ .top{display:block;padding-block:0 8px}
+ .pname{font-size:22px}
+ .psub{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+ .tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin-top:7px;width:100%}
+ .tile.t-wk,.tile.t-age{display:none}
+ .tile{padding:3px 5px 4px;min-width:0}.tile b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tile span{font-size:7.5px;letter-spacing:.08em}
+ .ebar{height:3px;margin-top:2px}
+ .stack,.g2{gap:12px}
+ .board{box-shadow:0 0 0 2px var(--pine-d),0 6px 14px rgba(0,0,0,.25)}
+ .bb{padding:10px 12px}.bh{font-size:12.5px;padding:7px 10px;letter-spacing:.1em}
+ .bh .btn.sm{min-height:30px;padding:5px 8px;font-size:12px}
+ .evn{font-size:22px}.evc{font-size:12.5px;margin-top:2px}
+ .meta{font-size:12.5px;gap:2px 12px;margin-block:8px}
+ .meta .mx{display:none}
+ .why{font-size:12px;margin-top:6px}
+ p{margin-bottom:8px}.small{font-size:12.5px}
+ .opts{gap:7px;margin-top:8px}
+ .opt{padding:9px 11px;min-height:44px}.opt b{font-size:16px}.opt span{font-size:12px}
+ .opts.seg3{grid-template-columns:repeat(3,minmax(0,1fr))}.opts.seg3 .opt{text-align:center;padding:10px 4px}.opts.seg3 .opt span{display:none}.opts.seg3 .opt b{font-size:13.5px;letter-spacing:0}
+ .evc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+ .rp-tog,.hide-m{display:none!important}
+ .ev2>.stack:last-child{order:-1}
+ .stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stats div{padding:6px 8px}.stats b{font-size:18px}.stats span{font-size:8.5px;letter-spacing:.08em}
+ .lb td{font-size:15px;padding:3px 4px}.lb td.tp{font-size:16px}.lb td.rd{font-size:13px;padding:3px 2px}.lb th{font-size:10px;padding:5px 3px;letter-spacing:.08em}
+ .lb td.nm{max-width:150px;overflow:hidden;text-overflow:ellipsis}
+ .live-card{display:none}
+ .shotgrid{grid-template-columns:92px minmax(0,1fr);gap:10px;margin-top:4px}
+ .shotgrid .cond{font-size:22px!important}
+ .cad{font-size:14px;padding:6px 8px;margin-top:6px}
+ .tvb p:nth-child(n+3){display:none}
+ .latest .ni:nth-child(n+4){display:none}
+ .ni{padding:7px 0}.ni .t{font-size:14.5px}.ni.big .t{font-size:15px}.ni .d{font-size:11px}
+ .qbar{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.qbar .btn{font-size:13px;padding:10px 4px;letter-spacing:.05em}
+ .row>.btn{flex:1 1 auto}
+ .btn{font-size:15px;padding:11px 12px}
+ .guide-full{display:none}
+ .guide-mini{display:flex;align-items:center;gap:8px;background:var(--red);color:#fff;border-radius:3px;padding:8px 10px;font-size:13px}
+ .guide-mini b{font:700 15px/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+ .guide-mini .btn{flex:0 0 auto;min-height:34px;padding:6px 10px;font-size:13px}
+ .guide-mini .gx{background:none;border:0;color:#fff;font-size:18px;min-width:34px;min-height:34px;cursor:pointer}
+ .alert{padding:10px 12px;gap:6px}.alert h3{font-size:18px}
+ .attr{grid-template-columns:96px minmax(0,1fr) 34px;gap:8px;padding-block:5px}.attr .v{font-size:18px}
+ .tbl{font-size:13px}
+ .big-pos{font-size:42px}
+ hr.s{margin:10px 0}
+ .feat{display:none}
+ .title{gap:14px}
+}
+
 /* intro */
 body.introing{overflow:hidden}
 #intro{position:fixed;inset:0;z-index:100;background:#0a281e;overflow:hidden;color:#fff}
@@ -1959,7 +2025,7 @@ function caddiePick(T,st,opts,diff,h){
 }
 function liveOptsHTML(T,st,opts,best,diff){
   const on=S.opt.caddie!==false;const tip=on?caddiePick(T,st,opts,diff,T.live.hole):null;const nums=!on||S.staff.caddie!=='local';
-  return `${tip?`<p class="cad">${esc(tip.t)}</p>`:''}<div class="opts">${opts.map(([k,n,e])=>`<button class="opt" data-a="shot" data-v="${k}"><span class="pct" style="font-size:15px">${tip&&tip.k===k?'Caddie’s pick':!tip&&e===best?'Best odds':''}</span><b>${esc(n)}</b><span>${nums?'Expected score on this hole: '+e.toFixed(2):'A tour caddie would give you the exact numbers.'}</span></button>`).join('')}</div>`;}
+  return `${tip?`<p class="cad">${esc(tip.t)}</p>`:''}<div class="opts">${opts.map(([k,n,e])=>`<button class="opt" data-a="shot" data-v="${k}"><span class="pct" style="font-size:15px">${tip&&tip.k===k?'Caddie’s pick':!tip&&e===best?'Best odds':''}</span><b>${esc(n)}</b>${nums?'<span>Expected score on this hole: '+e.toFixed(2)+'</span>':''}</button>`).join('')}</div>${nums?'':'<p class="small muted" style="margin:6px 0 0">Hire a tour caddie (Team tab) for exact numbers on every shot.</p>'}`;}
 function momentCaddie(T,mo){if(S.opt.caddie===false)return '';let i=0,b=99;mo.opts.forEach((o,j)=>{const v=optEV(o,T);if(v<b){b=v;i=j;}});const cad=S.staff.caddie;const wrong=cad==='local'?30:cad==='tour'?10:0;const hs=hash(T.ev.n+T.round+mo.t);if(hs%100<wrong&&mo.opts.length>1)i=(i+1)%mo.opts.length;
   return `<p class="cad">${esc(CADN[cad])}: “${esc(mo.opts[i].l)}. That’s the play.”</p>`;}
 
@@ -2011,7 +2077,7 @@ function tvHole(T,h,v){const L=T.live;const me=T.E.find(e=>e.id==='me');const cu
   else if(v===-1&&rnd()<.6)tv(T,pick([nm+' rolls it in at the '+ord(h+1)+'.','Birdie, '+nm+'. That’s '+tp(cur)+'.','Right in the heart. Birdie at the '+ord(h+1)+'.']));
   else if(v>=1&&rnd()<.6)tv(T,pick(['A dropped shot for '+nm+' at the '+ord(h+1)+'. The door opens.','That one stings. '+RES(v)[0].toUpperCase()+RES(v).slice(1)+' at the '+ord(h+1)+'.']));
   if(h===17)tv(T,cur<best?nm+' signs for '+tp(cur)+' and waits.':'The final putt drops. '+nm+' finishes at '+tp(cur)+'.');}
-function tvBoard(T){if(S.opt.tv===false||!T.tv||!T.tv.length)return '';return `<div class="board"><div class="bh"><span>From the booth</span><span>Live coverage</span></div><div class="bb">${T.tv.slice(0,5).map((t,i)=>`<p class="tvl" style="margin:0 0 8px;${i?'opacity:.7':''}">${esc(t)}</p>`).join('')}</div></div>`;}
+function tvBoard(T){if(S.opt.tv===false||!T.tv||!T.tv.length)return '';return `<div class="board tvb"><div class="bh"><span>From the booth</span><span>Live coverage</span></div><div class="bb">${T.tv.slice(0,5).map((t,i)=>`<p class="tvl" style="margin:0 0 8px;${i?'opacity:.7':''}">${esc(t)}</p>`).join('')}</div></div>`;}
 
 /* ============ records book ============ */
 function recAfter(T){const ev=T.ev;if(ev.tour!=='main'||T.mp||ev.type==='olympics'||!T.winner)return;
@@ -2077,7 +2143,9 @@ function mentorBoard(){const M=S.mentee;const g=M?G(M.id):null;const R=roster(S.
 /* ============ first-week guide ============ */
 const GUIDE=[['sched','Plan your schedule','Choose which weeks to play and which to rest. Auto-play follows this plan.'],['train','Pick a drill','Rest weeks give three training sessions. Try the range challenge for bonus gains.'],['player','Set up your bag','Driver loft, wedges and ball each trade one skill for another.'],['spon','Check sponsor offers','Deals pay every week and some add a small ratings boost. Most run for years.'],['play','Play a tournament','Set a game plan each round. In contention on Sunday, you play it shot by shot.']];
 function guideBoard(){const Gd=S.guide;if(!Gd||!Gd.on)return '';const done=k=>k==='play'?S.car.events>0:!!Gd.d[k];const n=GUIDE.filter(x=>done(x[0])).length;
-  return `<div class="board guide"><div class="bh"><span>First weeks on tour</span><span>${n}/${GUIDE.length}</span></div><div class="bb">${GUIDE.map(([k,t,d])=>`<div class="gstep ${done(k)?'ok':''}"><span class="gck">${done(k)?'✓':''}</span><div><b>${t}</b><span class="small muted">${d}</span></div>${k!=='play'&&!done(k)?`<button class="btn dk sm" data-a="tab" data-v="${k}">Open</button>`:''}</div>`).join('')}
+  const nx=GUIDE.find(x=>!done(x[0]));
+  const mini=nx?`<div class="guide-mini"><div style="flex:1;min-width:0"><span style="opacity:.85">Getting started ${n+1}/${GUIDE.length}</span><br><b>${nx[1]}</b></div>${nx[0]!=='play'?`<button class="btn sm" data-a="tab" data-v="${nx[0]}">Go</button>`:''}<button class="gx" data-a="guideoff" aria-label="Hide the guide">✕</button></div>`:'';
+  return mini+`<div class="board guide guide-full"><div class="bh"><span>First weeks on tour</span><span>${n}/${GUIDE.length}</span></div><div class="bb">${GUIDE.map(([k,t,d])=>`<div class="gstep ${done(k)?'ok':''}"><span class="gck">${done(k)?'✓':''}</span><div><b>${t}</b><span class="small muted">${d}</span></div>${k!=='play'&&!done(k)?`<button class="btn dk sm" data-a="tab" data-v="${k}">Open</button>`:''}</div>`).join('')}
    <div class="row" style="margin-top:10px"><button class="btn gh sm" data-a="guideoff">${n===GUIDE.length?'All set. Hide the guide':'Hide the guide'}</button><span class="small muted">You can turn it back on in Settings.</span></div></div></div>`;}
 
 /* ============ settings ============ */
@@ -2190,6 +2258,14 @@ function runIntro(){
   raf=requestAnimationFrame(tick);
 }
 
+
+/* ============ phone navigation ============ */
+const NAVI={home:'<path d="M5 21V4"/><path d="M5 4h11l-2.5 4L16 12H5"/>',sched:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',player:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',rank:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',more:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'};
+function bottomNav(tabs){const main=['home','sched','player','rank'];const names={home:'Week',sched:'Schedule',player:'Player',rank:'Ranks'};const rest=tabs.filter(t=>!main.includes(t[0]));const inMore=!main.includes(V.tab);const dotMore=S.offers.length>0;
+  const btn=(k,n,on,dot)=>`<button class="${on?'on':''}" data-a="${k==='more'?'more':'tab'}" data-v="${k}" aria-label="${n}" ${on?'aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${NAVI[k]}</svg>${n}${dot?'<i class="dot"></i>':''}</button>`;
+  return `<nav class="bnav" aria-label="Main">${main.map(k=>btn(k,names[k],V.tab===k&&!V.more,false)).join('')}${btn('more','More',inMore||V.more,dotMore)}</nav>`+
+   (V.more?`<div class="mscrim" data-a="more"></div><div class="msheet" role="menu"><div class="mg">${rest.map(([k,n])=>`<button class="${V.tab===k?'on':''}" role="menuitem" data-a="tab" data-v="${k}">${n}</button>`).join('')}</div></div>`:'');}
+
 /* ============ actions ============ */
 function startEvent(ev,quick){
   S.T=newT(ev,S.year,true);
@@ -2242,7 +2318,8 @@ const ACT={
   introt(){try{localStorage.setItem('tourcard-intro',introPref()?'off':'on');}catch(e){}render();},
   wkgo(){startWeekly();render();window.scrollTo(0,0);},
   wkpost(){wkPost().then(()=>render(),()=>{V.wkErr='Could not post. You may need Contributor access to this page.';render();});},
-  tab(v){if(MG&&MG.done)MG=null;V.tab=v;if(S&&S.guide&&S.guide.d){S.guide.d[v]=1;save();}V.confirmRetire=false;render();window.scrollTo(0,0);},
+  more(){V.more=!V.more;render();},
+  tab(v){if(MG&&MG.done)MG=null;V.tab=v;V.more=false;if(S&&S.guide&&S.guide.d){S.guide.d[v]=1;save();}V.confirmRetire=false;render();window.scrollTo(0,0);},
   rk(v){V.rk=v;render();},
   play(v){const w=S.sched[S.week];const ev=v==='side'?sideEv():v==='alt'?w.alt:w.main;startEvent(ev,false);render();window.scrollTo(0,0);},
   quick(v){const w=S.sched[S.week];const ev=v==='side'?sideEv():v==='alt'?w.alt:w.main;startEvent(ev,true);render();window.scrollTo(0,0);},
@@ -2422,8 +2499,8 @@ function topBar(){
   return `<div class="top"><div><div class="pname">${esc(S.p.name)}${S.dudes?' <span class="dztag">Dude</span>':''}</div><div class="psub">${S.p.ctry} · ${ARCH[S.p.arch].n} · ${tourName(S.tour)}${S.scen?' · Weekly challenge':''}${S.chal&&!S.chal.res?' · Challenge: season '+Math.min(S.chal.n,S.year-S.y0+1)+' of '+S.chal.n:''}${S.p.inj?' · <span style="color:var(--flag)">Injured '+S.p.inj+' wk</span>':''}${S.p.away?' · <span style="color:var(--flag)">Away '+S.p.away+' wk</span>':''}${S.p.rebuild?' · Swing rebuild':''}</div></div>
   <div class="tiles">
    <div class="tile"><span>Season</span><b>${S.year}</b></div>
-   <div class="tile"><span>Week</span><b>${S.phase==='play'?Math.min(S.week+1,S.sched.length)+'/'+S.sched.length:'—'}</b></div>
-   <div class="tile"><span>Age</span><b>${age()}</b></div>
+   <div class="tile t-wk"><span>Week</span><b>${S.phase==='play'?Math.min(S.week+1,S.sched.length)+'/'+S.sched.length:'—'}</b></div>
+   <div class="tile t-age"><span>Age</span><b>${age()}</b></div>
    <div class="tile" title="Weighted average of your ratings, not counting Fitness. Tour winners sit in the mid 80s.${S.dudes?' The Dudes are headed for the high 90s.':''}"><span>Overall</span><b>${o.toFixed(1)}</b></div>
    <div class="tile" title="${S.year<1986?'Unofficial world ranking (the official one starts in 1986)':'Official world ranking: two-year rolling average of points'}"><span>${S.year<1986?'Rank*':'World'}</span><b>${r?'#'+r:'—'}</b></div>
    <div class="tile"><span>Bank</span><b style="${S.p.cash<0?'color:var(--red)':''}">${money(S.p.cash)}</b></div>
@@ -2438,7 +2515,7 @@ function vGame(){
   else if(S.phase==='seasonEnd')body=vSeasonEnd();
   else{
     const tabs=[['home','This week'],...(S.dudes?[['dudes','The Dudes']]:[]),['sched','Schedule'],['player','Player'],['rank','Rankings'],['spon','Sponsors'+(S.offers.length?'<i class="dot"></i>':'')],['train','Training'],['team','Team'],['career','Career'],['news','News'],['settings','Settings']];
-    body=`<div class="tabs" role="tablist">${tabs.map(([k,n])=>`<button class="tab ${V.tab===k?'on':''}" role="tab" aria-selected="${V.tab===k}" data-a="tab" data-v="${k}">${n}</button>`).join('')}</div>`+
+    body=bottomNav(tabs)+`<div class="tabs" role="tablist">${tabs.map(([k,n])=>`<button class="tab ${V.tab===k?'on':''}" role="tab" aria-selected="${V.tab===k}" data-a="tab" data-v="${k}">${n}</button>`).join('')}</div>`+
       ({home:vHome,sched:vSched,train:vTrain,player:vPlayer,rank:vRank,spon:vSpon,team:vTeam,career:vCareer,news:vNews,dudes:S.dudes?vDudes:vHome,settings:vSettings}[V.tab]||vHome)();
   }
   return topBar()+body;
@@ -2458,7 +2535,7 @@ function evCard(ev,el,key,label){
   return `<div class="board"><div class="bh"><span>${label}</span>${badge}</div><div class="bb">
     <div class="evn">${esc(ev.n)}</div>
     <div class="evc">${esc(ev.cn)}${ev.type==='team'?'':' · Par '+c.par+' · '+purseTxt(ev,S.year)}</div>
-    ${ev.type==='team'?(ev.caps?`<p class="small" style="margin:8px 0 0">Captains: <strong>${esc(ev.caps[0])}</strong> (United States) and <strong>${esc(ev.caps[1])}</strong> (${esc(sideName(ev.kind==='ryder'?'EUR':'INT',S.year))}).</p>`:''):`<div class="meta"><span><span class="lbl">Field</span> ${stars(evStars(ev))}</span><span><span class="lbl">Rewards</span> ${suits(ev)}</span>${(()=>{const f=fitsHere(ev);return f.length?`<span><span class="lbl">Built for it</span> ${f.join(', ')}</span>`:'';})()}${(()=>{const H=(S.chist||{})[ev.cn];return H?`<span><span class="lbl">Your history</span> ${H.n} start${H.n>1?'s':''}${H.best?', best '+(H.best===1?'a win':ord(H.best)):''}</span>`:'';})()}${(()=>{const sp=specialists(ev);return sp.length?`<span><span class="lbl">Course specialists</span> ${sp.join(', ')}</span>`:'';})()}${sigFor(ev.cn).length?`<span><span class="lbl">Signature hole${sigFor(ev.cn).length>1?'s':''}</span> ${sigFor(ev.cn).map(x=>'No. '+x.s.hole).join(', ')}</span>`:''}${def&&ev.tour==='main'?`<span><span class="lbl">Defending</span> <b>${bn(def)}</b></span>`:''}${majHist(ev)}<span><span class="lbl">Headliners</span> ${headliners(ev)}</span></div>`}
+    ${ev.type==='team'?(ev.caps?`<p class="small" style="margin:8px 0 0">Captains: <strong>${esc(ev.caps[0])}</strong> (United States) and <strong>${esc(ev.caps[1])}</strong> (${esc(sideName(ev.kind==='ryder'?'EUR':'INT',S.year))}).</p>`:''):`<div class="meta"><span><span class="lbl">Field</span> ${stars(evStars(ev))}</span><span class="mx"><span class="lbl">Rewards</span> ${suits(ev)}</span>${(()=>{const f=fitsHere(ev);return f.length?`<span class="mx"><span class="lbl">Built for it</span> ${f.join(', ')}</span>`:'';})()}${(()=>{const H=(S.chist||{})[ev.cn];return H?`<span class="mx"><span class="lbl">Your history</span> ${H.n} start${H.n>1?'s':''}${H.best?', best '+(H.best===1?'a win':ord(H.best)):''}</span>`:'';})()}${(()=>{const sp=specialists(ev);return sp.length?`<span class="mx"><span class="lbl">Course specialists</span> ${sp.join(', ')}</span>`:'';})()}${sigFor(ev.cn).length?`<span class="mx"><span class="lbl">Signature hole${sigFor(ev.cn).length>1?'s':''}</span> ${sigFor(ev.cn).map(x=>'No. '+x.s.hole).join(', ')}</span>`:''}${def&&ev.tour==='main'?`<span><span class="lbl">Defending</span> <b>${bn(def)}</b></span>`:''}${majHist(ev)}<span><span class="lbl">Headliners</span> ${headliners(ev)}</span></div>`}
     ${acts?`<div class="row">${acts}</div>`:''}
     ${el.why?`<p class="why">${esc(el.why)}</p>`:''}
   </div></div>`;
@@ -2478,8 +2555,8 @@ function vHome(){
   const r=S.rankOf.me;const ml=S.tour==='main'?ptsList():S.tour==='am'?S.amPts:moneyList(S.tour);const mr=ml?Object.entries(ml).sort((a,b)=>b[1]-a[1]).findIndex(x=>x[0]==='me')+1:0;const mlab=S.tour==='main'?(useFx(S.year)?'FedEx Cup':'Money list'):S.tour==='euro'?raceName():S.tour==='am'?'Amateur rank':tourName(S.tour)+' money';
   const status=S.tour==='main'?(S.exUntil>=S.year+1?'Exempt through '+S.exUntil+'.':'Top '+cardLim(S.year)+' on the '+(S.year>=2013?'FedEx Cup points list':'money list')+' keeps your card.'):S.tour==='euro'?(S.exUntil>=S.year+1?'Exempt through '+S.exUntil+'.':'Top 115 on the '+raceName()+' keeps your card.'):S.tour==='am'?('Amateur: no prize money. '+(S.amInv&&S.amInv.y===S.year?'You hold invitations to: '+S.amInv.keys.map(k=>MAJ.find(m=>m[0]===k)[1]).join(', ')+'.':'Win the U.S. Amateur for a Masters invitation.')):S.tour==='dev'?'Top 25 on this money list, or a main-tour win, earns a card.':S.tour==='liv'?'Guaranteed spot. No world ranking points.':S.tour==='senior'?'Age 50 and over. Enjoy it.':'';
   return `<div class="g2"><div class="stack">${alerts.join('')}${guideBoard()}${cards.join('')}
-    <div class="row"><button class="btn gh" data-a="rest">Rest &amp; train this week</button><button class="btn gh" data-a="auto" title="Quick-sims your planned events and stops at the next major or team event">Auto-play to next major</button><button class="btn gh" data-a="simseason" title="Quick-sims the rest of the season using your schedule plan">Sim to end of season</button></div>
-    <p class="small" style="color:var(--txt-2);margin:0">Auto-play follows your plan on the Schedule tab. It stops when a decision is waiting.</p>
+    <div class="row qbar"><button class="btn gh" data-a="rest">Rest<span class="hide-m"> &amp; train this week</span></button><button class="btn gh" data-a="auto" title="Quick-sims your planned events and stops at the next major or team event"><span class="hide-m">Auto-play </span>To next major</button><button class="btn gh" data-a="simseason" title="Quick-sims the rest of the season using your schedule plan">Sim<span class="hide-m"> to end of</span> season</button></div>
+    <p class="small hide-m" style="color:var(--txt-2);margin:0">Auto-play follows your plan on the Schedule tab. It stops when a decision is waiting.</p>
   </div>
   <div class="stack">
     <div class="board"><div class="bh">Season ${S.year}</div><div class="bb">
@@ -2487,12 +2564,12 @@ function vHome(){
       <p class="small muted" style="margin:10px 0 0">${status}</p>
     </div></div>
     ${S.dudes?dudesHome():''}${goalsBoard()}
-    <div class="board"><div class="bh">Practice</div><div class="bb">
+    <div class="board hide-m"><div class="bh">Practice</div><div class="bb">
       <p style="margin:0 0 4px"><strong>${esc(curDrill().n)}</strong> · ${INT[S.tr.int].n} workload</p>
       <p class="small muted" style="margin:0 0 10px">Last week: ${gainTxt(S.tr.last)}. Form ${S.p.form>=0?'+':''}${S.p.form.toFixed(1)}.${S.tr.chalW===S.gw?'':' This week\u2019s range challenge is ready.'}</p>
       <button class="btn dk sm" data-a="tab" data-v="train">Open training</button>
     </div></div>
-    <div class="board"><div class="bh"><span>Latest</span><button class="btn dk sm" data-a="tab" data-v="news">All news</button></div><div class="bb">${newsList(6)}</div></div>
+    <div class="board latest"><div class="bh"><span>Latest</span><button class="btn dk sm" data-a="tab" data-v="news">All news</button></div><div class="bb">${newsList(6)}</div></div>
   </div></div>`;
 }
 function elig2(ev){if(S.p.inj>0)return{ok:false,why:'Injured this week.'};if(S.p.away>0)return{ok:false,why:'Away from golf for '+S.p.away+' more week'+(S.p.away>1?'s':'')+'.'};
@@ -2549,7 +2626,7 @@ function vEvent(){
   else panel=roundPanel(T);
   const last=T.cards[T.cards.length-1];
   const lastCard=last&&!T.live?`<div class="board"><div class="bh"><span>Your card · Round ${last.r+1}</span><span>${tp(last.h.reduce((a,b)=>a+b,0))}</span></div><div class="bb">${cardHTML(c.pars,last.h,last.r)}${last.mom&&last.mom.length?`<hr class="s">${last.mom.map(m=>`<p class="small" style="margin:0 0 4px"><strong>${esc(m.t)}.</strong> ${esc(m.l)}: ${m.ok?'it came off':'it didn\'t come off'}, ${RES(m.v)}.</p>`).join('')}`:''}</div></div>`:'';
-  return head+`<div class="g2"><div class="stack">${T.mp?bracketBoard(T):T.live?liveBoard(T):lbHTML(T)}</div><div class="stack">${storylines(T)}${teeSheet(T)}${panel}${tvBoard(T)}${lastCard}</div></div>`;
+  return head+`<div class="g2 ev2"><div class="stack">${T.mp?bracketBoard(T):T.live?liveBoard(T):lbHTML(T)}</div><div class="stack">${storylines(T)}${teeSheet(T)}${panel}${tvBoard(T)}${lastCard}</div></div>`;
 }
 function liveBoard(T){const L=T.live;const ids=Object.keys(L.ai).concat('me');
   const rows=ids.map(id=>{const e=T.E.find(x=>x.id===id);return{id,cur:liveScoreOf(T,e),today:id==='me'?L.me.reduce((a,b)=>a+b,0):L.ai[id].h.slice(0,L.hole).reduce((a,b)=>a+b,0)};}).sort((a,b)=>a.cur-b.cur||(a.id==='me'?-1:b.id==='me'?1:0));
@@ -2571,12 +2648,12 @@ function roundPanel(T){
   return `<div class="board"><div class="bh"><span>Round ${T.round+1} · Game plan</span></div><div class="bb">
    ${S.guide&&S.guide.on&&S.car.events<2&&!S.scen?'<p class="cad" style="margin:0 0 10px;font-style:normal;font-family:inherit;font-size:13.5px"><strong>Tip:</strong> Balanced is a safe default. Conservative helps you make cuts. Go Aggressive when you need birdies. Key shots let you make the big calls yourself.</p>':''}
    <p style="margin-bottom:4px"><strong>${sit}</strong></p>
-   ${T.round===0&&T.ev.tour!=='q'?(T.prac?'<p class="small" style="margin:0 0 6px">Practice round done. You know this course a little better.</p>':'<p style="margin:0 0 6px"><button class="btn gh sm" data-a="prac">Play a practice round first</button> <span class="small muted">Costs 10 energy. Worth about 0.15 shots a round on a new course, less on one you know.</span></p>'):''}
+   ${T.round===0&&T.ev.tour!=='q'?(T.prac?'<p class="small" style="margin:0 0 6px">Practice round done. You know this course a little better.</p>':'<p style="margin:0 0 6px"><button class="btn gh sm" data-a="prac">Play a practice round first</button> <span class="small muted hide-m">Costs 10 energy. Worth about 0.15 shots a round on a new course, less on one you know.</span></p>'):''}
    <p class="small muted">Tee time ${(()=>{const t=sheetMine(T)||teeTime(T,'me',T.round);return t.t+(t.slot===0?' (morning wave)':t.slot===1?' (afternoon wave)':'');})()} with ${pr.map(fn).map(esc).join(' and ')}${T.pcg&&T.pcg[T.round]?' (a past champions’ group)':''}. Forecast: ${wxTxt(condFor(T,me,T.round))}.${lastRound(T)&&contending(T)?' Sunday pressure is on. Your Mental rating matters now.':''}</p>
    ${lastRound(T)&&T.ev.tour!=='q'&&gap<=3?`<p class="small" style="margin:0 0 6px"><strong>You are in contention.</strong> ${S.opt.live!==false?'This round is played hole by hole.':'Live mode is off.'}</p>`:''}
-   <div class="opts">${S_.map(([k,n,d])=>`<button class="opt ${T.strat===k?'on':''}" data-a="strat" data-v="${k}"><b>${n}</b><span>${d}</span></button>`).join('')}</div>
-   <label class="toggle" style="margin-top:12px"><input type="checkbox" ${S.opt.moments?'checked':''} data-a="mom"> Make the call on two key shots per round</label>
-   <label class="toggle" style="margin-top:6px"><input type="checkbox" ${S.opt.live!==false?'checked':''} data-a="livet"> Play the final round hole by hole when within 3 of the lead</label>
+   <div class="opts seg3">${S_.map(([k,n,d])=>`<button class="opt ${T.strat===k?'on':''}" data-a="strat" data-v="${k}"><b>${n}</b><span>${d}</span></button>`).join('')}</div>
+   <div class="rp-tog"><label class="toggle" style="margin-top:12px"><input type="checkbox" ${S.opt.moments?'checked':''} data-a="mom"> Make the call on two key shots per round</label>
+   <label class="toggle" style="margin-top:6px"><input type="checkbox" ${S.opt.live!==false?'checked':''} data-a="livet"> Play the final round hole by hole when within 3 of the lead</label></div>
    <div class="row" style="margin-top:14px"><button class="btn" data-a="round">Tee off</button><button class="btn gh" data-a="simrest">Sim the rest of the event</button></div>
   </div></div>`;
 }
@@ -2724,7 +2801,7 @@ function livePanel(T){const L=T.live;const h=L.hole;const c=courseOf(T.ev);const
       ${st.notes.length?`<p class="small" style="margin:4px 0 0">${esc(st.notes[st.notes.length-1])}</p>`:''}
       ${liveOptsHTML(T,st,opts,best,diff)}
     </div></div>
-    <hr class="s">${cardHTML(c.pars,[...L.me,...Array(18-L.me.length).fill(null)],T.round)}
+    <div class="live-card"><hr class="s">${cardHTML(c.pars,[...L.me,...Array(18-L.me.length).fill(null)],T.round)}</div>
     <div class="row" style="margin-top:12px"><button class="btn gh sm" data-a="holeauto">Auto-play this hole</button><button class="btn gh sm" data-a="liveauto">Sim to the clubhouse</button></div>
   </div></div>`;}
 
