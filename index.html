@@ -385,6 +385,16 @@ body.introing{overflow:hidden}
 #intro .ibtns .btn{min-width:220px;font-size:20px;padding:15px 22px}
 #intro .ihint{font:600 11px 'Libre Franklin',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#d6e2da}
 #intro .iskip{position:absolute;top:calc(env(safe-area-inset-top) + 12px);right:calc(env(safe-area-inset-right) + 12px);background:rgba(10,40,30,.55);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:9px 16px;min-height:40px;font:700 14px 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#intro .igate{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 14vh);display:none;flex-direction:column;align-items:center;gap:10px;text-align:center}
+#intro.gate .igate{display:flex}#intro.gate .ishade{opacity:1;background:rgba(6,20,15,.55)}#intro.gate .ilogo span{opacity:1;transform:none}
+#intro.gate video{filter:blur(2px) brightness(.7)}
+#intro .igo{width:92px;height:92px;border-radius:50%;border:3px solid #fff;background:rgba(243,196,51,.95);color:#0a281e;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45);animation:ipulse 1.8s ease-in-out infinite}
+#intro .igo svg{width:42px;height:42px;fill:currentColor;margin-left:5px}
+@keyframes ipulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+#intro .igt{font:800 26px/1 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+#intro .igs{font:600 11px 'Libre Franklin',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#e2ebe5}
+#intro:not(.gate) .ilogo span{transition:opacity .4s}
+#intro.gate .itag{opacity:1;transform:none}
 #intro .iflash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
 #intro.hit .iflash{animation:iflash .7s ease-out}
 @keyframes iflash{0%{opacity:.9}100%{opacity:0}}
@@ -2209,7 +2219,7 @@ function vSettings(){
   return `<div class="g2"><div class="stack"><div class="board"><div class="bh">Play options</div><div class="bb"><div class="opts" style="margin:0">${OPTS.map(([k,n,d])=>`<button class="opt ${optOn(k)?'on':''}" data-a="opt" data-v="${k}" aria-pressed="${optOn(k)}"><span class="pct" style="font-size:15px">${optOn(k)?'On':'Off'}</span><b>${n}</b><span>${d}</span></button>`).join('')}
     <button class="opt ${S.guide&&S.guide.on?'on':''}" data-a="guidet" aria-pressed="${!!(S.guide&&S.guide.on)}"><span class="pct" style="font-size:15px">${S.guide&&S.guide.on?'On':'Off'}</span><b>First-week guide</b><span>The checklist on the This Week tab, plus tips on your first rounds.</span></button></div></div></div></div>
    <div class="stack"><div class="board"><div class="bh">Difficulty</div><div class="bb"><div class="opts" style="margin:0">${Object.entries(DIFFS).map(([k,d])=>`<button class="opt ${(S.diff||'pro')===k?'on':''}" data-a="sdiff" data-v="${k}"><b>${d.n}</b><span>${d.d}</span></button>`).join('')}</div><p class="small muted" style="margin:10px 0 0">Changes apply from the next tournament.</p></div></div>
-   <div class="board"><div class="bh">This career</div><div class="bb"><button class="opt ${introPref()?'on':''}" data-a="introt" aria-pressed="${introPref()}" style="margin-bottom:10px"><span class="pct" style="font-size:15px">${introPref()?'On':'Off'}</span><b>Intro video</b><span>Play the swing intro when the game opens.</span></button><p class="small" style="margin:0 0 10px">Save slot ${S.slot||1}. The game saves after every action.${S.chal?' Challenge '+esc(S.chal.c)+'.':''}${S.dudes?' Dudes mode.':''}</p><div class="row"><button class="btn dk sm" data-a="tab" data-v="career">Save code &amp; career card</button><button class="btn gh sm" data-a="home">Title screen</button></div></div></div></div></div>`;}
+   <div class="board"><div class="bh">This career</div><div class="bb"><button class="opt ${introPref()?'on':''}" data-a="introt" aria-pressed="${introPref()}" style="margin-bottom:10px"><span class="pct" style="font-size:15px">${introPref()?'On':'Off'}</span><b>Intro video</b><span>Play the swing intro when the game opens.</span></button>${songBoard()}<p class="small" style="margin:0 0 10px">Save slot ${S.slot||1}. The game saves after every action.${S.chal?' Challenge '+esc(S.chal.c)+'.':''}${S.dudes?' Dudes mode.':''}</p><div class="row"><button class="btn dk sm" data-a="tab" data-v="career">Save code &amp; career card</button><button class="btn gh sm" data-a="home">Title screen</button></div></div></div></div></div>`;}
 
 /* ============ shared helpers for the clubhouse db ============ */
 async function hofPatch(f){const ref=HOF.db.doc('hof/'+HOF.uid);const snap=await ref.get();const cur=snap.exists?(snap.data()||{}):{};await ref.set(f(cur));}
@@ -2282,37 +2292,53 @@ function vScenDone(){const X=S.scen,r=X.res;const p=r.pos===1?'WON':(r.tie?'T':'
 const INTRO_HIT=6.0;
 function introPref(){try{return localStorage.getItem('tourcard-intro')!=='off';}catch(e){return true;}}
 function introSeen(){try{return !!sessionStorage.getItem('tourcard-intro-seen');}catch(e){return false;}}
+function musicPref(){try{return localStorage.getItem('tourcard-music')!=='off';}catch(e){return true;}}
+function idb(){return new Promise((res,rej)=>{try{const r=indexedDB.open('tourcard',1);r.onupgradeneeded=()=>r.result.createObjectStore('kv');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);}catch(e){rej(e);}});}
+async function idbGet(k){try{const d=await idb();return await new Promise(res=>{const q=d.transaction('kv').objectStore('kv').get(k);q.onsuccess=()=>res(q.result||null);q.onerror=()=>res(null);});}catch(e){return null;}}
+async function idbSet(k,v){try{const d=await idb();await new Promise(res=>{const tx=d.transaction('kv','readwrite');const st=tx.objectStore('kv');v==null?st.delete(k):st.put(v,k);tx.oncomplete=res;tx.onerror=res;});}catch(e){}}
+let MYSONG=null;idbGet('song').then(s=>{MYSONG=s;});
 function runIntro(){
   if(document.getElementById('intro'))return;
   const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   const L=[...'TOUR CARD'].map((c,i)=>c===' '?'<span class="sp"></span>':`<span class="${i>=5?'r':''}" style="--d:${i*55}ms">${c}</span>`).join('');
-  const el=document.createElement('div');el.id='intro';el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','Tour Card');
-  el.innerHTML=`<div class="ibg" style="background-image:url(intro.jpg?v=3)"></div><video muted playsinline webkit-playsinline preload="auto" poster="intro.jpg?v=3" aria-hidden="true" disablepictureinpicture disableremoteplayback><source src="intro.mp4?v=3" type="video/mp4"><source src="intro.webm?v=3" type="video/webm"></video>
+  const el=document.createElement('div');el.id='intro';el.className='gate';el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','Tour Card');
+  el.innerHTML=`<div class="ibg" style="background-image:url(intro.jpg?v=4)"></div><video playsinline webkit-playsinline preload="auto" poster="intro.jpg?v=4" aria-hidden="true" disablepictureinpicture disableremoteplayback><source src="intro.mp4?v=4" type="video/mp4"><source src="intro.webm?v=4" type="video/webm"></video>
    <div class="ishade"></div><div class="iball"></div><div class="iflash"></div>
    <div class="ilogo" aria-hidden="true">${L}</div><h1 class="itag">From Q-School to the Hall of Fame</h1>
+   <div class="igate"><button class="igo" type="button" data-i="start" aria-label="Start the intro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button><div class="igt">Tap to tee off</div><div class="igs">${musicPref()?'Sound on for the full effect':'Music is off in Settings'}</div></div>
    <button class="iskip" type="button">Skip</button>
    <div class="ibtns"><button class="btn" type="button" data-i="go">Tee off</button><span class="ihint">Tap anywhere to start</span></div>`;
   document.body.appendChild(el);document.body.classList.add('introing');
-  const v=el.querySelector('video');let done=false,hit=false,raf=0,timer=0;
+  const v=el.querySelector('video');let done=false,hit=false,raf=0,timer=0,started=false,aud=null,url=null;
   const doHit=()=>{if(hit)return;hit=true;el.classList.add('hit');try{navigator.vibrate&&navigator.vibrate(18);}catch(e){}setTimeout(()=>{el.classList.add('ready');const b=el.querySelector('[data-i=go]');b&&b.focus({preventScroll:true});},1300);};
-  const still=()=>{el.classList.add('still');doHit();el.classList.add('ready');};
+  const still=()=>{el.classList.remove('gate');el.classList.add('still');doHit();el.classList.add('ready');};
+  const fadeOut=(m,ms)=>{if(!m)return;const v0=m.volume,t0=performance.now();const f=()=>{const k=(performance.now()-t0)/ms;if(k>=1){try{m.pause();}catch(e){}return;}m.volume=Math.max(0,v0*(1-k));requestAnimationFrame(f);};f();};
   const exit=()=>{if(done)return;done=true;cancelAnimationFrame(raf);clearTimeout(timer);try{sessionStorage.setItem('tourcard-intro-seen','1');}catch(e){}
-    el.classList.add('hit','out');document.body.classList.remove('introing');
+    fadeOut(aud,1200);if(!v.muted)fadeOut(v,1000);
+    el.classList.remove('gate');el.classList.add('hit','out');document.body.classList.remove('introing');
     if(V.screen==='title')render();
-    setTimeout(()=>{el.remove();const b=document.querySelector('#app .btn');b&&b.focus({preventScroll:true});},reduce?0:1200);};
+    setTimeout(()=>{el.remove();if(url)URL.revokeObjectURL(url);const b=document.querySelector('#app .btn');b&&b.focus({preventScroll:true});},reduce?0:1300);};
   const tick=()=>{if(done)return;if(v.currentTime>=INTRO_HIT)doHit();raf=requestAnimationFrame(tick);};
-  el.addEventListener('click',e=>{if(e.target.closest('.iskip')||e.target.closest('[data-i=go]')||el.classList.contains('ready'))exit();else if(!hit){v.currentTime=Math.max(v.currentTime,INTRO_HIT-.4);}});
-  el.addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Enter'||e.key===' '){e.preventDefault();exit();}});
-  v.addEventListener('ended',()=>{if(!el.classList.contains('ready'))el.classList.add('ready');setTimeout(exit,1600);});
-  const srcs=v.querySelectorAll('source');srcs[srcs.length-1].addEventListener('error',still);
-  el.querySelector('.iskip').focus({preventScroll:true});
-  if(reduce){still();return;}
-  const p=v.play();if(p&&p.catch)p.catch(still);
-  timer=setTimeout(()=>{if(!hit&&v.currentTime<.2)still();},4500);
-  raf=requestAnimationFrame(tick);
+  const start=()=>{if(started)return;started=true;el.classList.remove('gate');
+    const music=musicPref();
+    if(music&&MYSONG&&MYSONG.blob){url=URL.createObjectURL(MYSONG.blob);aud=new Audio(url);aud.currentTime=MYSONG.start||0;aud.volume=1;v.muted=true;aud.play().catch(()=>{});}
+    else v.muted=!music;
+    if(reduce){still();return;}
+    const p=v.play();if(p&&p.catch)p.catch(()=>{v.muted=true;v.play().catch(still);});
+    timer=setTimeout(()=>{if(!hit&&v.currentTime<.2)still();},4500);raf=requestAnimationFrame(tick);};
+  el.addEventListener('click',e=>{if(e.target.closest('.iskip')){exit();return;}if(!started){start();return;}if(e.target.closest('[data-i=go]')||el.classList.contains('ready'))exit();else if(!hit){v.currentTime=Math.max(v.currentTime,INTRO_HIT-.4);}});
+  el.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();exit();}else if(e.key==='Enter'||e.key===' '){e.preventDefault();if(!started)start();else exit();}});
+  v.addEventListener('ended',()=>{if(!el.classList.contains('ready'))el.classList.add('ready');setTimeout(exit,aud?2600:1600);});
+  const srcs=v.querySelectorAll('source');srcs[srcs.length-1].addEventListener('error',()=>{if(started)still();});
+  el.querySelector('[data-i=start]').focus({preventScroll:true});
 }
-
-
+async function songPick(file){if(!file)return;if(file.size>25e6){V.songMsg='That file is over 25 MB. Pick a shorter song.';render();return;}
+  const s={blob:file,name:file.name.slice(0,60),start:0};await idbSet('song',s);MYSONG=s;V.songMsg='Saved on this device.';render();}
+function songBoard(){return `<button class="opt ${musicPref()?'on':''}" data-a="musict" aria-pressed="${musicPref()}" style="margin-bottom:10px"><span class="pct" style="font-size:15px">${musicPref()?'On':'Off'}</span><b>Intro music</b><span>${MYSONG?'Plays your song: '+esc(MYSONG.name):'Plays the Tour Card theme.'}</span></button>
+  <div class="small" style="margin:0 0 10px"><strong>Your own intro song.</strong> Pick an audio file from this phone or computer. It stays on this device and is never uploaded.
+   <div class="row" style="margin-top:6px"><label class="btn dk sm" style="display:inline-flex;align-items:center">Choose a song<input type="file" accept="audio/*" id="song-in" style="display:none"></label>${MYSONG?`<button class="btn gh sm" data-a="songclear">Use the theme instead</button>`:''}</div>
+   ${MYSONG?`<div class="row" style="margin-top:6px"><label for="song-st" class="small">Start the song at</label><input type="number" id="song-st" min="0" max="600" value="${MYSONG.start||0}" style="width:90px;min-height:36px;padding:6px 8px"> <span class="small muted">seconds</span></div>`:''}
+   ${V.songMsg?`<p class="small" style="margin:6px 0 0">${esc(V.songMsg)}</p>`:''}</div>`;}
 
 function recapHTML(){const B=S.lastBatch,L=S.lastWk;const rk=(a,b)=>!b?'':!a?' · World #'+b:a===b?' · World #'+b:' · World #'+a+' → #'+b+(b<a?' ▲':' ▼');
   if(B&&B.wks>1)return `<div class="recap"><b>${B.wks}</b><div><strong>weeks simmed:</strong> ${B.ev} event${B.ev===1?'':'s'}, ${B.cuts} cut${B.cuts===1?'':'s'} made${B.wins?', <strong>'+B.wins+' win'+(B.wins>1?'s':'')+'</strong>':''}${B.best&&!B.wins?', best '+esc(B.best.posT)+' at the '+esc(B.best.n):''}. ${money(B.money)} earned${rk(B.r0,B.r1)}.</div></div>`;
@@ -2376,6 +2402,8 @@ const ACT={
   chjoin(v){chJoin(v||V.chIn);},
   chpost(){chalPost().then(()=>render(),()=>{V.chPostErr='Could not post. You may need Contributor access to this page.';render();});},
   intro(){runIntro();},
+  musict(){try{localStorage.setItem('tourcard-music',musicPref()?'off':'on');}catch(e){}render();},
+  songclear(){idbSet('song',null);MYSONG=null;V.songMsg='Back to the Tour Card theme.';render();},
   introt(){try{localStorage.setItem('tourcard-intro',introPref()?'off':'on');}catch(e){}render();},
   wkgo(){startWeekly();render();window.scrollTo(0,0);},
   wkpost(){wkPost().then(()=>render(),()=>{V.wkErr='Could not post. You may need Contributor access to this page.';render();});},
@@ -2471,7 +2499,7 @@ const ACT={
   plan(v){}
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.disabled)return;const f=ACT[b.dataset.a];if(f)f(b.dataset.v,b);});
-document.addEventListener('change',e=>{const t=e.target;if(t.id==='c-ctry')C.ctry=t.value;if(t.id==='c-year'){C.year=clamp(+t.value||1997,1960,2026);render();}if(t.id==='focus')ACT.focus(t.value);if(t.id==='c-home'){C.home=t.value;render();}if(t.id==='c-diff'){C.diff=t.value;render();}if(t.id&&t.id.startsWith('chf-')){V.chf=V.chf||{};V.chf[t.id.slice(4)]=t.value;}if(t.id==='cp-strat'&&S.cup)S.cup.strat=t.value;if(t.id&&t.id.startsWith('cp-')&&t.id!=='cp-strat'&&S.cup&&S.cup.sugg){const[,i,j]=t.id.split('-');S.cup.sugg[+i][+j]=t.value;}if(t.dataset&&t.dataset.plan!==undefined){S.plan[+t.dataset.plan]=t.value;save();render();}});
+document.addEventListener('change',e=>{const t=e.target;if(t.id==='c-ctry')C.ctry=t.value;if(t.id==='c-year'){C.year=clamp(+t.value||1997,1960,2026);render();}if(t.id==='focus')ACT.focus(t.value);if(t.id==='c-home'){C.home=t.value;render();}if(t.id==='c-diff'){C.diff=t.value;render();}if(t.id==='song-in'&&t.files&&t.files[0])songPick(t.files[0]);if(t.id==='song-st'&&MYSONG){MYSONG.start=clamp(+t.value||0,0,600);idbSet('song',MYSONG);}if(t.id&&t.id.startsWith('chf-')){V.chf=V.chf||{};V.chf[t.id.slice(4)]=t.value;}if(t.id==='cp-strat'&&S.cup)S.cup.strat=t.value;if(t.id&&t.id.startsWith('cp-')&&t.id!=='cp-strat'&&S.cup&&S.cup.sugg){const[,i,j]=t.id.split('-');S.cup.sugg[+i][+j]=t.value;}if(t.dataset&&t.dataset.plan!==undefined){S.plan[+t.dataset.plan]=t.value;save();render();}});
 document.addEventListener('keydown',e=>{if(MG&&!MG.done&&(e.code==='Space'||e.key===' ')){e.preventDefault();mgSwing();}});
 document.addEventListener('input',e=>{if(e.target.id==='c-name')C.name=e.target.value;if(e.target.id==='code-in')V.codeIn=e.target.value;if(e.target.id==='ch-in')V.chIn=e.target.value;});
 
