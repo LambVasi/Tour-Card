@@ -252,6 +252,38 @@ button,select,input,label,.opt,.pc,.tab{touch-action:manipulation}
 @media (pointer:coarse){.btn{min-height:44px}.btn.sm{min-height:40px}.tab{min-height:46px}.toggle{min-height:40px}.toggle input{width:22px;height:22px}select,input[type=text],input[type=number]{min-height:44px}.opt{min-height:48px}}
 @media (max-width:640px){.wrap{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}}
 
+
+/* player card */
+.pcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;background:linear-gradient(135deg,var(--pine-l),var(--pine-d));border-radius:4px;padding:18px;box-shadow:0 0 0 2px var(--pine-d),0 14px 30px rgba(0,0,0,.3);margin-top:4px}
+.pc-ovr{width:118px;height:118px;border-radius:50%;background:conic-gradient(var(--flag) calc(var(--p)*1%),rgba(255,255,255,.14) 0);display:grid;place-items:center}
+.pc-ovr>div{width:96px;height:96px;border-radius:50%;background:var(--pine-d);display:grid;place-items:center;align-content:center;text-align:center}
+.pc-ovr b{font:800 40px/.9 'Barlow Condensed',sans-serif;color:#fff}.pc-ovr span{font:600 9px 'Libre Franklin',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-2)}
+.pc-name{font:800 34px/.95 'Barlow Condensed',sans-serif;text-transform:uppercase;color:#fff}
+.pc-sub{color:var(--txt-2);font-size:13px;margin-top:4px}
+.pc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pc-chips span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:3px;padding:4px 9px;font:700 17px/1.1 'Barlow Condensed',sans-serif;color:#fff}
+.pc-chips small{display:block;font:600 8.5px 'Libre Franklin',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-2)}
+.pc-spark{margin-top:8px;display:flex;align-items:center;gap:10px}.pc-spark small{font-size:11px;color:var(--txt-2)}
+.prow{display:grid;grid-template-columns:118px minmax(0,1fr) 30px 44px;gap:8px;align-items:center;padding-block:5px;border-bottom:1px solid var(--line)}
+.prow .pn{font-size:13.5px;font-weight:600}.prow b{font:800 20px/1 'Barlow Condensed',sans-serif;text-align:right}.prow small{font:700 12px 'Barlow Condensed',sans-serif;text-align:right}
+.prow .bar{height:9px}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:2px;background:var(--board-2);color:var(--ink)}
+.tag.g{background:#dfeee5;color:var(--pine-l)}.tag.b{background:#f7e1e4;color:var(--red)}
+.sgr{display:grid;grid-template-columns:120px minmax(0,1fr) 46px;gap:8px;align-items:center;padding-block:6px;border-bottom:1px solid var(--line);font-size:13.5px}
+.sgb{position:relative;height:10px;background:var(--board-2)}.sgb::after{content:'';position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--ink)}
+.sgb i{position:absolute;top:0;bottom:0}.sgr b{font:800 17px 'Barlow Condensed',sans-serif;text-align:right}
+.pm{display:grid;grid-template-columns:62px minmax(0,1fr) 30px;gap:8px;align-items:center;padding-block:5px;font-size:13px}.pm b{font:800 17px 'Barlow Condensed',sans-serif;text-align:right}
+.rvr{display:flex;justify-content:space-between;gap:10px;align-items:center;padding-block:8px;border-bottom:1px solid var(--line)}.rvr:last-child{border:0}
+.rvr b{font:700 19px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;display:block}.rvr small{font-size:12px;color:var(--muted)}
+.rvs{font:800 20px 'Barlow Condensed',sans-serif;text-align:right;min-width:70px}.h2b{height:4px;background:var(--red);margin-top:3px}.h2b i{display:block;height:100%;background:var(--pine-l)}
+.recap{display:flex;gap:10px;align-items:center;background:var(--board);color:var(--ink);border-left:5px solid var(--flag);border-radius:3px;padding:9px 12px;font-size:13.5px}
+.recap b{font:800 22px/1 'Barlow Condensed',sans-serif;min-width:44px;text-align:center}
+@media (max-width:640px){.pcard{grid-template-columns:86px minmax(0,1fr);gap:12px;padding:12px}.pc-ovr{width:86px;height:86px}.pc-ovr>div{width:70px;height:70px}.pc-ovr b{font-size:28px}.pc-name{font-size:24px}.pc-chips span{font-size:15px;padding:3px 7px}.pc-spark small{display:none}
+ .prow{grid-template-columns:92px minmax(0,1fr) 26px 38px;gap:6px}.prow .pn{font-size:12.5px}.sgr{grid-template-columns:104px minmax(0,1fr) 42px;font-size:12.5px}}
+.bagseg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:2px solid var(--pine);border-radius:3px;overflow:hidden}
+.bagseg button{background:#fff;border:0;border-left:1px solid var(--line);min-height:40px;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+.bagseg button:first-child{border-left:0}.bagseg button.on{background:var(--pine);color:#fff}
 /* ---------- phone layout ---------- */
 .bnav,.msheet,.guide-mini{display:none}
 @media (max-width:640px){
@@ -1202,6 +1234,7 @@ function qName(){return S.home==='euro'?'European Tour Qualifying School':'Quali
 function qEvent(){return mkEv(qName(),S.home==='euro'?'PGA Catalunya':'PGA West Stadium Course',{tour:'q',cutN:0,pm:.03,fieldN:100,mo:'Dec'});}
 function newSeason(){return{events:0,wins:0,t10:0,cuts:0,money:0,rel:0,rounds:0,spon:0};}
 function startSeason(y){
+  S.p.a0={...S.p.a};
   if(S.dudes){S.dudes.mo[y]=ovr(S.p.a);RC=null;}
   S.year=y;S.week=0;S.sched=buildSchedule(y);S.moneyS={};S.moneyD={};S.moneyL={};S.moneyX={};S.moneyE={};S.fedex={};S.amPts={};S.winsS={};S.scoreS={};S.plan={};
   S.season=newSeason();S.invites=S.tour==='am'?2:S.dudes&&S.year-S.p.birth<22?6:3;S.qual={};S.qualTried={};S.phase='play';S.sum=null;S.cup=null;S.p.energy=100;S.p.inj=0;
@@ -1220,7 +1253,7 @@ function startSeason(y){
   if(y>S.y0)news('The '+y+' season begins. You are on the '+tourName(S.tour)+'.','me');
   mentorSeason();mentorOffer();S.goals=genGoals();S.goalsY=y;
 }
-function tourName(t,y){y=y||S.year;const home=S&&S.home||'main';if(t==='main')return 'PGA Tour';if(t==='euro')return y<2022?'European Tour':'DP World Tour';if(t==='dev')return home==='euro'?(y>=1989?'Challenge Tour':'Satellite Tour'):(y<1990?'Satellite Tour':y<1993?'Ben Hogan Tour':y<2000?'Nike Tour':y<2003?'Buy.com Tour':y<2012?'Nationwide Tour':y<2019?'Web.com Tour':'Korn Ferry Tour');if(t==='liv')return 'LIV Golf League';if(t==='senior')return y<2003?'Senior PGA Tour':y<2016?'Champions Tour':'PGA Tour Champions';if(t==='am')return 'Amateur golf';return 'Q-School';}
+function tourName(t,y){y=y||S.year;const home=S&&S.home||'main';if(t==='main')return 'PGA Tour';if(t==='euro')return y<2022?'European Tour':'DP World Tour';if(t==='dev')return home==='euro'?'Challenge Tour':'Korn Ferry Tour';if(t==='liv')return 'LIV Golf League';if(t==='senior')return y<2003?'Senior PGA Tour':y<2016?'Champions Tour':'PGA Tour Champions';if(t==='am')return 'Amateur golf';return 'Q-School';}
 
 const curDrill=()=>DRILLS.find(x=>x.id===S.tr.drill)||DRILLS[DRILLS.length-1];
 const primary=d=>Object.entries(d.a).sort((a,b)=>b[1]-a[1])[0][0];
@@ -1247,7 +1280,7 @@ function randomEvent(){
   else if(r===5){if(!S.spon.partner&&!S.offers.some(o=>o.slot==='partner')){S.offers.push(makeOffer('partner',1.4));news('Your pro-am partner runs a company. A partnership offer lands on your desk.','me');}}
 }
 function advanceWeek(o){
-  o=o||{};MG=null;const w=S.sched[S.week];const played=o.played||null;let excl=o.excl||null;
+  o=o||{};MG=null;const w=S.sched[S.week];const r0w=S.rankOf.me,o0w=ovr(S.p.a);const played=o.played||null;let excl=o.excl||null;
   if(S.tour==='euro'&&w.euro&&played!=='euro'){const t=simAI(w.euro);excl=new Set(t.E.map(e=>e.id));}
   if(w.main.type==='team'){if(played!=='team'){const res=simCup(w.main.kind,S.year,false,w.main.home);
       news(sideName(res.winner==='TIE'?'USA':res.winner,S.year)+(res.winner==='TIE'?' and '+sideName(res.bs,S.year)+' tie':' win')+' the '+cupName(res.kind)+', '+Math.max(res.sa,res.sb)+'–'+Math.min(res.sa,res.sb)+'.','big');}}
@@ -1278,6 +1311,7 @@ function advanceWeek(o){
   if(S.p.fragile){if(S.gw>S.p.fragile.until)S.p.fragile=null;else if(played&&!S.pending&&rnd()<.03){const t=S.p.fragile.t;S.p.fragile=null;S.p.inj=1;S.pending={k:'injury',t};news('Your '+INJ[t].n+' flares up again.','big');}}
   randomEvent();lifeEvent();
   S.gw++;computeRanks();dudeWeek();
+  S.lastWk={y:S.year,mo:w.mo,res:played&&played!=='team'?S.res[S.res.length-1]:null,team:played==='team',r0:r0w,r1:S.rankOf.me,dO:ovr(S.p.a)-o0w};
   const r=S.rankOf.me;if(r){if(r===1){S.car.wk1++;fame(.3);if(ach('no1'))news(S.p.name+' is the No. 1 player in the world.','big');}S.car.best=Math.min(S.car.best||9999,r);if(r<=10)fame(.05);}
   (S.rkHist=S.rkHist||[]).push([+(S.year+S.week/S.sched.length).toFixed(3),r||0]);
   if(S.year>=2022&&S.tour==='main'&&!S.livOffer&&S.year-S.livSeenY>=3&&(r&&r<=60||S.car.majors.length)&&rnd()<.08){
@@ -1566,7 +1600,10 @@ function planPick(w){
   return null;
 }
 function autoplay(stopAtBig){
-  let guard=0;
+  let guard=0;const b0={n:S.res.length,y:S.year,r0:S.rankOf.me,cash:S.p.cash,wk:S.gw};
+  try{return autoplayInner(stopAtBig,guard);}finally{const rs=S.res.slice(b0.n).filter(r=>r.tour!=='q');const wks=S.gw-b0.wk;S.lastBatch=wks>1?{wks,ev:rs.length,wins:rs.filter(r=>r.win).length,best:rs.filter(r=>r.pos).sort((a,b)=>a.pos-b.pos)[0]||null,money:rs.reduce((a,r)=>a+(r.money||0),0),r0:b0.r0,r1:S.rankOf.me,cuts:rs.filter(r=>r.pos).length}:null;}
+}
+function autoplayInner(stopAtBig,guard){
   while(S.phase==='play'&&!S.T&&guard++<80){
     if(S.cup){if(S.cup.stage==='done'){S.cup=null;advanceWeek({played:'team'});continue;}break;}
     if(S.livOffer||S.pending)break;
@@ -2004,12 +2041,13 @@ function bestBall(c){let b='tour',bv=-9;for(const[k,,fx] of BAG.ball){let v=0;fo
 function bagBall(){const b=S.bag||{};if(b.match&&S.T&&S.T.ev)return bestBall(courseOf(S.T.ev));return b.ball||'tour';}
 function bagFx(){const b=S.bag||{};const fx={};const add=o=>{for(const k in o)fx[k]=(fx[k]||0)+o[k];};
   add((BAG.loft.find(x=>x[0]===b.loft)||BAG.loft[1])[2]);add((BAG.wedge.find(x=>x[0]===b.wedge)||BAG.wedge[1])[2]);add((BAG.ball.find(x=>x[0]===bagBall())||BAG.ball[0])[2]);return fx;}
-function bagBoard(){const b=S.bag||{};const row=(slot,title)=>`<div class="lbl" style="margin:10px 0 6px">${title}</div><div class="seg">${BAG[slot].map(([k,n,fx])=>`<button class="opt ${(b[slot]||(slot==='loft'?'9.5':slot==='wedge'?'3':'tour'))===k?'on':''}" data-a="bag" data-v="${slot}:${k}"><b style="font-size:16px">${esc(n)}</b><span>${Object.keys(fx).length?fxText(fx):'No trade-off'}</span></button>`).join('')}</div>`;
+function bagBoard(){const b=S.bag||{};const SH={loft:['8°','9.5°','10.5°'],wedge:['2 wedges','3 wedges','4 wedges'],ball:['Tour','Distance','Soft']};const def={loft:'9.5',wedge:'3',ball:'tour'};
+  const row=(slot,title)=>{const cur=b[slot]||def[slot];const sel=BAG[slot].find(x=>x[0]===cur)||BAG[slot][1];return `<div class="lbl" style="margin:10px 0 5px">${title}</div><div class="bagseg">${BAG[slot].map(([k],i)=>`<button class="${cur===k?'on':''}" data-a="bag" data-v="${slot}:${k}" aria-pressed="${cur===k}">${SH[slot][i]}</button>`).join('')}</div><p class="small muted" style="margin:4px 0 0">${esc(sel[1])}: ${Object.keys(sel[2]).length?fxText(sel[2]):'no trade-off'}${slot==='ball'&&b.match?' (your caddie swaps balls to suit each course)':''}</p>`;};
   return `<div class="board"><div class="bh">In the bag</div><div class="bb">
-    ${['clubs','ball'].map(sl=>{const c=S.spon[sl];return `<p class="small" style="margin:0 0 4px"><strong>${SLOTN[sl]} deal:</strong> ${c?esc(c.b)+' ('+fxText(c.fx)+')':'None. Off-the-rack gear.'}</p>`;}).join('')}
-    ${row('loft','Driver')}${row('wedge','Wedge setup')}${row('ball','Golf ball')}
-    <label class="toggle" style="margin-top:10px"><input type="checkbox" ${b.match?'checked':''} data-a="bagmatch"> Let your caddie pick the ball for each course</label>
-    <p class="small muted" style="margin:8px 0 0">Every choice trades one skill for another. It’s ${S.year}: the tour plays ${clubEra(S.year)}.</p></div></div>`;}
+    ${['clubs','ball'].map(sl=>{const c=S.spon[sl];return `<p class="small" style="margin:0 0 3px"><strong>${SLOTN[sl]} deal:</strong> ${c?esc(c.b)+' ('+fxText(c.fx)+')':'None yet'}</p>`;}).join('')}
+    ${row('loft','Driver')}${row('wedge','Wedges')}${row('ball','Ball')}
+    <label class="toggle" style="margin-top:10px"><input type="checkbox" ${b.match?'checked':''} data-a="bagmatch"> Caddie picks the ball for each course</label>
+    <p class="small muted" style="margin:6px 0 0">It’s ${S.year}: the tour plays ${clubEra(S.year)}.</p></div></div>`;}
 
 /* ============ caddie advice ============ */
 const CADN={local:'Your local caddie',tour:'Your caddie',vet:'Your veteran looper'};
@@ -2259,6 +2297,13 @@ function runIntro(){
 }
 
 
+
+function recapHTML(){const B=S.lastBatch,L=S.lastWk;const rk=(a,b)=>!b?'':!a?' · World #'+b:a===b?' · World #'+b:' · World #'+a+' → #'+b+(b<a?' ▲':' ▼');
+  if(B&&B.wks>1)return `<div class="recap"><b>${B.wks}</b><div><strong>weeks simmed:</strong> ${B.ev} event${B.ev===1?'':'s'}, ${B.cuts} cut${B.cuts===1?'':'s'} made${B.wins?', <strong>'+B.wins+' win'+(B.wins>1?'s':'')+'</strong>':''}${B.best&&!B.wins?', best '+esc(B.best.posT)+' at the '+esc(B.best.n):''}. ${money(B.money)} earned${rk(B.r0,B.r1)}.</div></div>`;
+  if(!L||L.y!==S.year)return '';
+  if(L.res)return `<div class="recap"><b>${esc(L.res.posT)}</b><div><strong>Last week:</strong> ${esc(L.res.n)}${L.res.money?' · '+money(L.res.money):''}${rk(L.r0,L.r1)}</div></div>`;
+  if(L.team)return '';
+  return `<div class="recap"><b>+${Math.max(0,L.dO).toFixed(1)}</b><div><strong>Rest week:</strong> overall up ${Math.max(0,L.dO).toFixed(2)} from training. Energy ${Math.round(S.p.energy)}.</div></div>`;}
 /* ============ phone navigation ============ */
 const NAVI={home:'<path d="M5 21V4"/><path d="M5 4h11l-2.5 4L16 12H5"/>',sched:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',player:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',rank:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',more:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'};
 function bottomNav(tabs){const main=['home','sched','player','rank'];const names={home:'Week',sched:'Schedule',player:'Player',rank:'Ranks'};const rest=tabs.filter(t=>!main.includes(t[0]));const inMore=!main.includes(V.tab);const dotMore=S.offers.length>0;
@@ -2327,7 +2372,7 @@ const ACT={
   qual(k){const o=ovr(effAttrs());const p=clamp(.08+(o-72)*.035,.04,.9);S.qualTried[k]=true;
     if(rnd()<p){S.qual[k]=true;news('You come through qualifying for the '+(k==='open'?'Open Championship':'U.S. Open')+'.','me');}
     else news('You miss out in '+(k==='open'?'Open':'U.S. Open')+' qualifying by '+(1+Math.floor(rnd()*3))+' shots.','me');save();render();},
-  rest(){advanceWeek({});render();},
+  rest(){S.lastBatch=null;advanceWeek({});render();},
   auto(){autoplay(true);render();window.scrollTo(0,0);},
   simseason(){autoplay(false);render();window.scrollTo(0,0);},
   livet(){S.opt.live=S.opt.live===false;save();render();},
@@ -2374,7 +2419,7 @@ const ACT={
   sign(){playMyRound(S.T.mo);save();render();},
   simrest(){runQuick();save();render();},
   lball(){V.lbAll=!V.lbAll;render();},
-  done(){finishEvent();render();window.scrollTo(0,0);},
+  done(){S.lastBatch=null;finishEvent();render();window.scrollTo(0,0);},
   cup(){startCup(!!(S.capt&&S.capt.y===S.year));save();render();window.scrollTo(0,0);},
   cupdone(){S.cup=null;advanceWeek({played:'team'});render();window.scrollTo(0,0);},
   focus(v){S.p.focus=v;save();render();},
@@ -2554,7 +2599,7 @@ function vHome(){
   if(S.tour!=='main'&&!se)cards.unshift(`<div class="board"><div class="bh">${w.mo} · ${tourName(S.tour)}</div><div class="bb"><p style="margin:0">No ${tourName(S.tour)} event this week.</p></div></div>`);
   const r=S.rankOf.me;const ml=S.tour==='main'?ptsList():S.tour==='am'?S.amPts:moneyList(S.tour);const mr=ml?Object.entries(ml).sort((a,b)=>b[1]-a[1]).findIndex(x=>x[0]==='me')+1:0;const mlab=S.tour==='main'?(useFx(S.year)?'FedEx Cup':'Money list'):S.tour==='euro'?raceName():S.tour==='am'?'Amateur rank':tourName(S.tour)+' money';
   const status=S.tour==='main'?(S.exUntil>=S.year+1?'Exempt through '+S.exUntil+'.':'Top '+cardLim(S.year)+' on the '+(S.year>=2013?'FedEx Cup points list':'money list')+' keeps your card.'):S.tour==='euro'?(S.exUntil>=S.year+1?'Exempt through '+S.exUntil+'.':'Top 115 on the '+raceName()+' keeps your card.'):S.tour==='am'?('Amateur: no prize money. '+(S.amInv&&S.amInv.y===S.year?'You hold invitations to: '+S.amInv.keys.map(k=>MAJ.find(m=>m[0]===k)[1]).join(', ')+'.':'Win the U.S. Amateur for a Masters invitation.')):S.tour==='dev'?'Top 25 on this money list, or a main-tour win, earns a card.':S.tour==='liv'?'Guaranteed spot. No world ranking points.':S.tour==='senior'?'Age 50 and over. Enjoy it.':'';
-  return `<div class="g2"><div class="stack">${alerts.join('')}${guideBoard()}${cards.join('')}
+  return `<div class="g2"><div class="stack">${alerts.join('')}${recapHTML()}${guideBoard()}${cards.join('')}
     <div class="row qbar"><button class="btn gh" data-a="rest">Rest<span class="hide-m"> &amp; train this week</span></button><button class="btn gh" data-a="auto" title="Quick-sims your planned events and stops at the next major or team event"><span class="hide-m">Auto-play </span>To next major</button><button class="btn gh" data-a="simseason" title="Quick-sims the rest of the season using your schedule plan">Sim<span class="hide-m"> to end of</span> season</button></div>
     <p class="small hide-m" style="color:var(--txt-2);margin:0">Auto-play follows your plan on the Schedule tab. It stops when a decision is waiting.</p>
   </div>
@@ -2829,20 +2874,45 @@ function vTrain(){
    <p class="small muted" style="margin:10px 0 0">Bars show progress to the next point. Gains slow above 70, 80, 88 and 94.<br>Last week: ${gainTxt(S.tr.last)}.</p>
   </div></div></div></div>`;
 }
+function tierCol(v){return v>=92?'#c99a1c':v>=85?'#17563f':v>=78?'#2a7055':v>=70?'#7d8f6a':'#a8b2ab';}
+function tourAvg(){const R=roster(S.year);const ids=R.main.slice(0,125);return ids.length?ids.reduce((a,id)=>a+R.rating[id],0)/ids.length:78;}
+function radarSVG(A,cap){const K=['pow','acc','app','sho','put','men'];const N=K.length,cx=130,cy=120,rad=92;const lo=45,hi=100;
+  const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/N;const r=rad*clamp((v-lo)/(hi-lo),0,1);return [cx+r*Math.cos(a),cy+r*Math.sin(a)];};
+  const poly=vals=>vals.map((v,i)=>pt(i,v).map(n=>n.toFixed(1)).join(',')).join(' ');
+  const rings=[60,70,80,90,100].map(v=>`<polygon points="${poly(K.map(()=>v))}" fill="none" stroke="#d8ddd1" stroke-width="${v===100?1.5:1}"/>`).join('');
+  const spokes=K.map((k,i)=>{const[x,y]=pt(i,100);return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e4e8df"/>`;}).join('');
+  const labs=K.map((k,i)=>{const[x,y]=pt(i,113);return `<text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="#66766c" font-family="Barlow Condensed,Arial Narrow,sans-serif" letter-spacing=".08em">${{pow:'POWER',acc:'ACCURACY',app:'IRONS',sho:'SHORT GAME',put:'PUTTING',men:'MENTAL'}[k]}</text>`;}).join('');
+  return `<svg viewBox="-34 0 328 236" width="100%" style="max-width:380px;display:block;margin:0 auto" role="img" aria-label="Ratings shape">${rings}${spokes}${cap?`<polygon points="${poly(K.map(k=>cap[k]))}" fill="none" stroke="#c99a1c" stroke-width="1.5" stroke-dasharray="4 3"/>`:''}<polygon points="${poly(K.map(k=>A[k]))}" fill="rgba(23,86,63,.28)" stroke="#17563f" stroke-width="2.5" stroke-linejoin="round"/>${K.map((k,i)=>{const[x,y]=pt(i,A[k]);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="#17563f"/>`;}).join('')}${labs}</svg>`;}
+function sgRows(A){const avg=tourAvg();const cats=[['Off the tee',(A.pow*W.pow+A.acc*W.acc)/(W.pow+W.acc),W.pow+W.acc],['Approach',A.app,W.app],['Around the green',A.sho,W.sho],['Putting',A.put,W.put],['Pressure',A.men,W.men]];
+  return cats.map(([n,v,w])=>{const sg=(v-avg)*w*K*1.0;const pct=clamp(Math.abs(sg)/1.2*50,0,50);
+    return `<div class="sgr"><span>${n}</span><div class="sgb"><i style="${sg>=0?'left:50%':'right:50%'};width:${pct}%;background:${sg>=0?'var(--pine-l)':'var(--red)'}"></i></div><b class="${sg>=0?'o':'u'}">${sg>=0?'+':''}${sg.toFixed(2)}</b></div>`;}).join('');}
+function traits(A){const o=ovr(A);const t=[];const L={pow:'Long off the tee',acc:'Fairway finder',app:'Flag hunter',sho:'Scrambler',put:'Lethal putter',men:'Ice in the veins',fit:'Iron body'};const Wk={pow:'Short off the tee',acc:'Wild driver',app:'Loose irons',sho:'Shaky chipper',put:'Cold putter',men:'Feels the nerves',fit:'Fragile'};
+  const ks=Object.keys(L);const srt=ks.slice().sort((a,b)=>(A[b]-o)-(A[a]-o));const good=srt.filter(k=>A[k]-o>=2).slice(0,3),bad=srt.reverse().filter(k=>o-A[k]>=2).slice(0,2);
+  return {good:good.map(k=>L[k]),bad:bad.map(k=>Wk[k])};}
 function vPlayer(){
-  const A=effAttrs(),o=ovr(A);
-  const desc={pow:'Distance off the tee. Matters most on long courses and par 5s.',acc:'Fairways hit. U.S. Open setups punish misses.',app:'Iron play. The biggest single factor in scoring.',sho:'Chipping and bunkers. Links golf and trouble shots.',put:'Holing out. Augusta’s greens reward it.',mental:'',men:'Handles Sunday pressure and playoffs.',fit:'Energy drain per event, injury risk and how fast you age.'};
-  return `<div class="g2"><div class="board"><div class="bh"><span>Ratings</span><span>Overall ${o.toFixed(1)}</span></div><div class="bb">
-    ${ATTRS.map(([k,n])=>{const b=S.p.a[k],e=A[k];const lo=Math.min(b,e),d=e-b;return `<div class="attr"><div><div style="font-weight:600;font-size:14px">${n}</div><div class="small muted" style="line-height:1.3">${desc[k]}</div></div><div class="bar"><i style="width:${lo}%"></i>${d>0?`<em style="left:${b}%;width:${d}%"></em>`:''}</div><span class="v">${Math.round(e)}</span></div>`;}).join('')}
-    <p class="small muted" style="margin:10px 0 0">Yellow segments are boosts from equipment deals and your caddie. Overall excludes Fitness.</p>
-  </div></div>
-  <div class="stack"><div class="board"><div class="bh">Profile</div><div class="bb">
-    <div class="stats"><div><b>${age()}</b><span>Age</span></div><div><b>${S.p.fame.toFixed(0)}</b><span>Fame</span></div><div><b>${S.p.form>=0?'+':''}${S.p.form.toFixed(1)}</b><span>Form</span></div><div><b>${Math.round(S.p.energy)}</b><span>Energy</span></div></div>
-    <p class="small" style="margin:12px 0 0">${ARCH[S.p.arch].n}. Started as a ${BGS[S.p.bg].n.toLowerCase()} in ${S.y0}. Scouts rate your ceiling: <strong>${potTxt()}</strong>. Fame drives sponsor offers and captain’s picks. Form rises with good finishes and cools when you rest.</p>
-  </div></div>
-  <div class="board"><div class="bh">Rivals</div><div class="bb">${(S.rivals||[]).map(rv=>{const g=G(rv.id);if(!g)return '';return `<div style="padding-block:8px;border-bottom:1px solid var(--line)"><div class="cond" style="font-size:22px;font-weight:700;text-transform:uppercase;line-height:1">${esc(g.name)} <span class="small muted" style="letter-spacing:.1em">${g.ctry}</span></div><div class="small">${rv.kind==='peer'?PERS[rv.pers]+' · came up with you':'Star of your generation'} · age ${S.year-g.birth}${rk(rv.id)<9999?' · world No. '+rk(rv.id):''}${styleOf(rv.id)?' · '+esc(styleTxt(rv.id)):''}</div><div class="small">Head to head: you lead ${rv.w}–${rv.l} · Heat <span style="letter-spacing:2px">${'■'.repeat(Math.min(5,rv.heat))}${'□'.repeat(Math.max(0,5-rv.heat))}</span></div></div>`;}).join('')||'<p class="small muted" style="margin:0">No rivals yet.</p>'}</div></div>
-  <div class="board"><div class="bh">Life off the course</div><div class="bb">${(()=>{const L=S.p.life||{};return `<p class="small" style="margin:0">${L.partner==='married'?'Married':L.partner==='dating'?'In a relationship':'Single'}${L.kids?' · '+L.kids+' kid'+(L.kids>1?'s':''):''}${L.found?' · Foundation since '+L.found:''}${L.agent?' · Represented by an agency':''}${L.home?' · Home near your practice base':''}</p><p class="small muted" style="margin:6px 0 0">Media reputation: ${mediaTxt()}. It nudges sponsor offers up or down.${S.p.rebuild?' Swing rebuild in progress: '+S.p.rebuild.wk+' weeks left (−3 to shot-making until then).':''}</p>`;})()}</div></div>
-  ${bagBoard()}</div></div>`;
+  const A=effAttrs(),o=ovr(A),B=S.p.a,a0=S.p.a0||B;const cap=S.p.tgt||(()=>{const c={};for(const[k] of ATTRS)c[k]=Math.min(99,capOf(k));return c;})();const capO=ovr(cap);
+  const r=S.rankOf.me;const tr=traits(A);const pct=clamp((o-50)/(Math.max(capO,o)-50)*100,0,100);
+  const rkh=(S.rkHist||[]).filter(x=>x[1]).slice(-60);let spark='';if(rkh.length>2){const ys=rkh.map(x=>Math.log10(x[1]));const mn=Math.min(...ys),mx=Math.max(...ys,mn+.3);spark=`<svg viewBox="0 0 120 30" width="120" height="30" aria-hidden="true"><polyline fill="none" stroke="#f3c433" stroke-width="2" points="${rkh.map((x,i)=>(i/(rkh.length-1)*118+1).toFixed(1)+','+(2+26*(Math.log10(x[1])-mn)/(mx-mn)).toFixed(1)).join(' ')}"/></svg>`;}
+  const meter=(n,v,col)=>`<div class="pm"><span>${n}</span><div class="bar"><i style="width:${clamp(v,0,100)}%;background:${col}"></i></div><b>${Math.round(v)}</b></div>`;
+  const L=S.p.life||{};
+  return `<div class="pcard"><div class="pc-ovr" style="--p:${pct}"><div><b>${o.toFixed(1)}</b><span>Overall</span></div></div>
+   <div class="pc-id"><div class="pc-name">${esc(S.p.name)}${S.dudes?' <span class="dztag">Dude</span>':''}</div><div class="pc-sub">${esc(cName(S.p.ctry))} · Age ${age()} · ${esc(ARCH[S.p.arch].n)} · ${esc(tourName(S.tour))}</div>
+    <div class="pc-chips"><span><small>World</small>${r?'#'+r:'—'}</span><span><small>Ceiling</small>${esc(potTxt())}</span><span><small>Wins</small>${S.car.wins}</span><span><small>Majors</small>${S.car.majors.length}</span></div>
+    ${spark?`<div class="pc-spark"><small>World rank, last ${rkh.length} weeks</small>${spark}</div>`:''}</div></div>
+  <div class="g2" style="margin-top:14px"><div class="stack">
+   <div class="board"><div class="bh"><span>Game</span><span>${S.p.tgt?'Gold line: your ceiling':'Gold line: scouts’ ceiling'}</span></div><div class="bb">${radarSVG(A,cap)}
+    <div class="prow-list">${ATTRS.map(([k,n])=>{const v=A[k],d=B[k]-a0[k];return `<div class="prow"><span class="pn">${{pow:'Power',acc:'Accuracy',app:'Irons',sho:'Short game',put:'Putting',men:'Mental',fit:'Fitness'}[k]}</span><div class="bar"><i style="width:${v}%;background:${tierCol(v)}"></i>${cap[k]>v?`<em style="left:${Math.min(99,cap[k])}%;width:2px;background:#c99a1c"></em>`:''}</div><b>${Math.round(v)}</b><small class="${d>.05?'o':d<-.05?'u':'muted'}">${d>.05?'▲'+d.toFixed(1):d<-.05?'▼'+(-d).toFixed(1):'—'}</small></div>`;}).join('')}</div>
+    <p class="small muted" style="margin:8px 0 0">Arrows show change since the season started. Equipment, caddie and bag boosts are included.</p>
+    <div class="tagrow">${tr.good.map(t=>`<span class="tag g">${t}</span>`).join('')}${tr.bad.map(t=>`<span class="tag b">${t}</span>`).join('')}</div></div></div>
+   <div class="board"><div class="bh"><span>Strokes gained per round</span><span>vs. tour average</span></div><div class="bb">${sgRows(A)}<p class="small muted" style="margin:8px 0 0">Estimated from your ratings against the top 125 on tour this season. Total: <strong>${((o-tourAvg())*K).toFixed(2)}</strong> shots a round.</p></div></div>
+  </div><div class="stack">
+   <div class="board"><div class="bh">Condition</div><div class="bb">${meter('Energy',S.p.energy,S.p.energy<40?'var(--red)':'var(--pine-l)')}${meter('Fame',S.p.fame,'#c99a1c')}${meter('Form',50+S.p.form*16.7,S.p.form>=0?'var(--pine-l)':'var(--red)')}${meter('Fitness',A.fit,'var(--pine-ll)')}
+    <p class="small muted" style="margin:6px 0 0">Media: ${mediaTxt()}.${S.p.inj?' <strong style="color:var(--red)">Injured, '+S.p.inj+' weeks.</strong>':''}${S.p.rebuild?' Swing rebuild: '+S.p.rebuild.wk+' weeks left.':''}</p></div></div>
+   ${bagBoard()}
+   <div class="board"><div class="bh">Rivals</div><div class="bb">${(S.rivals||[]).map(rv=>{const g=G(rv.id);if(!g)return '';const tot=rv.w+rv.l;return `<div class="rvr"><div><b>${esc(g.name)}</b><small>${g.ctry} · ${rv.dude?'Fellow Dude':rv.kind==='peer'?PERS[rv.pers]:'Star of your era'} · age ${S.year-g.birth}${rk(rv.id)<9999?' · #'+rk(rv.id):''}</small></div><div class="rvs"><span class="o">${rv.w}</span>–<span class="u">${rv.l}</span><div class="h2b"><i style="width:${tot?rv.w/tot*100:50}%"></i></div></div></div>`;}).join('')||'<p class="small muted" style="margin:0">No rivals yet.</p>'}</div></div>
+   <div class="board"><div class="bh">Off the course</div><div class="bb"><div class="tagrow" style="margin:0">${[L.partner==='married'?'Married':L.partner==='dating'?'In a relationship':'Single',L.kids?L.kids+' kid'+(L.kids>1?'s':''):'',L.found?'Foundation since '+L.found:'',L.agent?'Agency client':'',L.home?'Home near practice base':'',S.mentee?'Mentoring '+fn(S.mentee.id):''].filter(Boolean).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+    <p class="small muted" style="margin:8px 0 0">Started as a ${BGS[S.p.bg].n.toLowerCase()} in ${S.y0}.</p></div></div>
+  </div></div>`;
 }
 function vRank(){
   const t=V.rk;let rows=[],title='',note='',unit='';
